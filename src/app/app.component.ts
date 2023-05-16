@@ -7,4 +7,12 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'utunes-app';
+
+  constructor() {
+    
+  }
+
+  ngOnInit(): void {
+    
+  }
 }
