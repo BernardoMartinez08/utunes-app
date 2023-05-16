@@ -18,6 +18,10 @@ export class AlbumService {
     return this.httpClient.get<SongDetails[]>(`${environment.baseApiUrl}/Albums/${id}/songs`);
   }
 
+  getSongsByName(id : string | null, songName : string | null) : Observable<SongDetails[]>{
+    return this.httpClient.get<SongDetails[]>(`${environment.baseApiUrl}/Albums/${id}/songs/${songName}`);
+  }
+
   getAlbums() : Observable<AlbumPreview[]>{
     return this.httpClient.get<AlbumPreview[]>(`${environment.baseApiUrl}/Albums`);
   }

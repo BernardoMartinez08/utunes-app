@@ -13,8 +13,10 @@ import { AlbumRate } from '../models/album-rate';
 })
 export class AlbumComponent {
   @Input() album ?: AlbumDetails;
-  @Input() songs ?: Array<SongDetails>;
+  @Input() songs !: Array<SongDetails>;
   totalSongs : number | undefined;
+
+  filteredSongs !: Array<SongDetails>;
 
   constructor(private route: ActivatedRoute, private albumService : AlbumService) { }
 
@@ -30,6 +32,7 @@ export class AlbumComponent {
         .subscribe({
           next: (data : SongDetails[]) => {
             this.songs = data;
+            this.filteredSongs = data;
             this.totalSongs = data.length;
           },
           error: (err: any) => console.log(err)
@@ -67,6 +70,14 @@ export class AlbumComponent {
           error: (err) => console.log(err)
         });
     }
+  }
+
+  filterByName(name : number){
+    if(name == 0){
+      this.filteredSongs = this.songs;
+      return;
+    }
+    //this.filteredSongs = this.songs.filter((song: SongDetails ) => song.name == name);
   }
 }
 
